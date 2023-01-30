@@ -18,6 +18,9 @@ namespace MISWebAppAAD
         // The Client ID is used by the application to uniquely identify itself to Azure AD.
         string clientId = System.Configuration.ConfigurationManager.AppSettings["ClientId"];
 
+        // The Client Secret is used by the application to uniquely identify itself to Azure AD.
+        string clientSecret = System.Configuration.ConfigurationManager.AppSettings["ClientSecret"];
+
         // RedirectUri is the URL where the user will be redirected to after they sign in.
         string redirectUri = System.Configuration.ConfigurationManager.AppSettings["RedirectUri"];
 
@@ -41,6 +44,7 @@ namespace MISWebAppAAD
             {
                 // Sets the ClientId, authority, RedirectUri as obtained from web.config
                 ClientId = clientId,
+                //ClientSecret = clientSecret,
                 Authority = authority,
                 RedirectUri = redirectUri,
                 // PostLogoutRedirectUri is the page that users will be redirected to after sign-out. In this case, it is using the home page

@@ -1,12 +1,15 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="MISWebAppAAD.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <h2><%: Title %>.</h2>
     <h3>Your application description page.</h3>
     <p>Use this area to provide additional information.</p>
 
     <div style="padding: 50px">
-
+        <% if ( !HttpContext.Current.User.Identity.IsAuthenticated) {%>
+           <asp:Button runat = "server" OnClick = "SignIn" Text = "Sign In" class="btn btn-primary btn-block btn-flat"/>
+        <%}%>
            <h3>Authentication:</h3>
         <table class="table table-striped table-bordered table-hover">
             <tr>
@@ -28,8 +31,13 @@
                 <td>
                     <asp:Label runat="server" ID="lblName"></asp:Label></td>
             </tr>
-            <tr>
+             <tr>
                 <td>Username</td>
+                <td>
+                    <asp:Label runat="server" ID="lblPersonCode"></asp:Label></td>
+            </tr>
+            <tr>
+                <td>College Email</td>
                 <td>
                     <asp:Label runat="server" ID="lblUsername"></asp:Label></td>
             </tr>
@@ -48,7 +56,11 @@
         <br />
         <br />
 
-        <asp:Button runat="server" OnClick="LogOut" Text="Sign Out" class="btn btn-primary btn-block btn-flat"/>
+
+          <% if (HttpContext.Current.User.Identity.IsAuthenticated) {%>
+           <asp:Button runat="server" OnClick="SignOut" Text="Sign Out" class="btn btn-primary btn-block btn-flat"/>
+        <%}%>
+        
      
     </div>
 
